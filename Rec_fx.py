@@ -97,8 +97,6 @@ def sample_train_recommendation(model, train, data_meta, user_ids, k, name, mapp
         if tag is not None:
             known_tags = data_meta.loc[u_idx, tag]  # get item tags.
 
-        if (len(known_positives) < k):
-            print('not enough known positives, return max number')
 
         scores = model.predict(user_id, np.arange(n_items), user_features=user_features, item_features=item_features,
                                num_threads=num_threads)
@@ -107,8 +105,7 @@ def sample_train_recommendation(model, train, data_meta, user_ids, k, name, mapp
         if tag is not None:
             top_tags = data_meta.loc[i_idx, tag]  # get item tags.
 
-        print("User %s" % user_id)
-        print("Known positives:")
+        
         kn_ps = []
         if tag is not None:
             for x in range(len(known_positives)):
@@ -117,7 +114,7 @@ def sample_train_recommendation(model, train, data_meta, user_ids, k, name, mapp
             for x in known_positives[:len(known_positives)]:
                 print("        %s" % x)
         rc = []
-        print("Recommended:")
+        
         cnt = 0
         if tag is not None:
             for x in range(k):
@@ -132,10 +129,9 @@ def sample_train_recommendation(model, train, data_meta, user_ids, k, name, mapp
                     cnt += 1
                     print('This one clicked')
         #printmd('*cnt: *' + str(cnt))
-        print('k_p: %s'%str(len(known_positives)))
+      
         p_k = cnt / k
-        print('precicion at k : %s'%str(p_k))
-        print('----------------------------------------------------------------------')
+        
         return kn_ps,rc
 
 def sample_test_recommendation(model, train, test, data_meta, user_ids, k, name, mapping, tag=None,

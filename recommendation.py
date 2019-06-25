@@ -134,7 +134,7 @@ import Rec_fx as rf
         
 #test corresponding recpmmendation
 
-rf.sample_train_recommendation(model1,list1[0],list1[2],[74],5,'name',mapping=list1[3].mapping()[2],tag='category',
+a,b = rf.sample_train_recommendation(model1,list1[0],list1[2],[74],5,'name',mapping=list1[3].mapping()[2],tag='category',
                               user_features = list1[4],item_features=list1[5])
 user_index=list(set(rf.get_user_index(test)))
 rf.sample_test_recommendation(model1,train,test,data_business,[user_index[51]],5,'name',mapping=dataset.mapping()[2],
